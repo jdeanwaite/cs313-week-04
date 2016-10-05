@@ -23,11 +23,28 @@ id	int(11)	NO	PRI	NULL	auto_increment
 conference_session_id	int(11)	NO	MUL	NULL	
 speaker_id	int(11)	NO	MUL	NULL	
 
-Table	Create Table
-conference_session	CREATE TABLE `conference_session` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `year` int(11) NOT NULL,\n  `month` varchar(20) NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB DEFAULT CHARSET=latin1
+#Table	Create Table
+conference_session	CREATE TABLE `conference_session` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `year` int(11) NOT NULL,\n  `month` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
 
-Table	Create Table
-speaker	CREATE TABLE `speaker` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `name` varchar(100) NOT NULL,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB DEFAULT CHARSET=latin1
+#Table	Create Table
+speaker	CREATE TABLE `speaker` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
 
-Table	Create Table
-notes	CREATE TABLE `notes` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `conference_session_id` int(11) NOT NULL,\n  `speaker_id` int(11) NOT NULL,\n  PRIMARY KEY (`id`),\n  KEY `fk_speaker` (`speaker_id`),\n  KEY `fk_conference_session` (`conference_session_id`),\n  CONSTRAINT `fk_conference_session` FOREIGN KEY (`conference_session_id`) REFERENCES `conference_session` (`id`),\n  CONSTRAINT `fk_speaker` FOREIGN KEY (`speaker_id`) REFERENCES `speaker` (`id`)\n) ENGINE=InnoDB DEFAULT CHARSET=latin1
+#Table	Create Table
+notes	CREATE TABLE `notes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `conference_session_id` int(11) NOT NULL,
+  `speaker_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_speaker` (`speaker_id`),
+  KEY `fk_conference_session` (`conference_session_id`),
+  CONSTRAINT `fk_conference_session` FOREIGN KEY (`conference_session_id`) REFERENCES `conference_session` (`id`),
+  CONSTRAINT `fk_speaker` FOREIGN KEY (`speaker_id`) REFERENCES `speaker` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
