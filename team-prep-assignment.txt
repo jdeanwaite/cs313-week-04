@@ -47,15 +47,18 @@ speaker	CREATE TABLE `speaker` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
 
 #Table	Create Table
-notes	CREATE TABLE `notes` (
+notes   CREATE TABLE `notes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `conference_session_id` int(11) NOT NULL,
   `speaker_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_speaker` (`speaker_id`),
   KEY `fk_conference_session` (`conference_session_id`),
+  KEY `fk_user` (`user_id`),
   CONSTRAINT `fk_conference_session` FOREIGN KEY (`conference_session_id`) REFERENCES `conference_session` (`id`),
-  CONSTRAINT `fk_speaker` FOREIGN KEY (`speaker_id`) REFERENCES `speaker` (`id`)
+  CONSTRAINT `fk_speaker` FOREIGN KEY (`speaker_id`) REFERENCES `speaker` (`id`),
+  CONSTRAINT `fk_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
 
 #Table   Create Table
